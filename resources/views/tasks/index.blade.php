@@ -31,7 +31,7 @@
                 <tr>
                     {{-- メッセージ詳細ページへのリンク --}}
                     <td>{!! link_to_route('tasks.show', $task->id, ['task' => $task->id]) !!}</td>
-                    <th>{{ $task->status }}</th>
+            
                     <td>{{ $task->content }}</td>
                 </tr>
                 @endforeach
