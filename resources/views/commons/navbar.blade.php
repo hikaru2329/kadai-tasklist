@@ -12,14 +12,14 @@
             <ul class="navbar-nav">
                 @if (Auth::check())
                 
-                    <li class="nav-item">{!! link_to_route('users.index', 'Users', [], ['class' => 'nav-link']) !!}</li>
+                    
                     {{-- ユーザ一覧ページへのリンク --}}
                 
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}</a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             
-                            <li class="dropdown-item">{!! link_to_route('users.show', 'My profile', ['user' => Auth::id()]) !!}</li>
+                            <li class="dropdown-item">{!! link_to_route('tasks.create', 'タスク登録', ['user' => Auth::id()]) !!}</li>
                             {{-- ユーザ詳細ページへのリンク --}}
                             
                             <li class="dropdown-divider"></li>

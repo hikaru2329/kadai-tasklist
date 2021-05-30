@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\User;
+use App\Task;
+
 class UsersController extends Controller
 {
     //
@@ -23,10 +26,12 @@ class UsersController extends Controller
     {
         // idの値でユーザを検索して取得
         $user = User::findOrFail($id);
+        $task = Task::findOrFail($id);
 
         // ユーザ詳細ビューでそれを表示
         return view('users.show', [
             'user' => $user,
+            'task' => $task,
         ]);
     }
 

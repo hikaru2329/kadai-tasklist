@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
+    
+    
     <div class="row">
         <aside class="col-sm-4">
             <div class="card">
@@ -13,15 +16,25 @@
                 </div>
             </div>
         </aside>
-        <div class="col-sm-8">
-            <ul class="nav nav-tabs nav-justified mb-3">
-                {{-- ユーザ詳細タブ --}}
-                //<li class="nav-item"><a href="#" class="nav-link">TimeLine</a></li>
-                {{-- フォロー一覧タブ --}}
-                //<li class="nav-item"><a href="#" class="nav-link">Followings</a></li>
-                {{-- フォロワー一覧タブ --}}
-                //<li class="nav-item"><a href="#" class="nav-link">Followers</a></li>
-            </ul>
+        <div class="col-8">
+            {!! Form::model($task, ['route' => 'tasks.store']) !!}
+            
+                <div class="form-group">
+                    {!! Form::label('status', 'ステータス:') !!}
+                    {!! Form::text('status', null, ['class' => 'form-control']) !!}
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('content', 'タスク内容:') !!}
+                    {!! Form::text('content', null, ['class' => 'form-control']) !!}
+                </div>
+
+                {!! Form::submit('登録', ['class' => 'btn btn-primary']) !!}
+                {!! link_to_route('tasks.index','タスク一覧',[],['class' => 'btn btn-primary']) !!}
+                
+
+            {!! Form::close() !!}
         </div>
+        
     </div>
 @endsection

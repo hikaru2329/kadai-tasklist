@@ -2,7 +2,8 @@
 
 @section('content')
     @if (Auth::check())
-        {{ Auth::user()->name }}
+        {!! link_to_route('tasks.index', 'タスク一覧', ['user' => Auth::id()],['class' => 'btn btn-primary mx-auto d-block']) !!}
+        
     @else
         <div class="center jumbotron">
             <div class="text-center">
@@ -13,3 +14,4 @@
         </div>
     @endif
 @endsection
+

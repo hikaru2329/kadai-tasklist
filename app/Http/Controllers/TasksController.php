@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Task;
+use App\User;
 
 class TasksController extends Controller
 {
@@ -16,10 +17,16 @@ class TasksController extends Controller
     public function index()
     {
         //
-        $tasks=Task::all();
+        $user=\Auth::user();
+        
+        
+        //$user->loadRelationshipCounts();
+        
+        $tasks = $user->tasks()->orderBy('created_at', 'desc')->paginate(10);
         
         return view('tasks.index',[
             'tasks'=>$tasks,
+            'user' => $user,
         ]);
     }
 
@@ -55,9 +62,10 @@ class TasksController extends Controller
         $task=new Task;
         $task->content=$request->content;
         $task->status=$request->status;
+        $task->user_id=$request->user()->id;
         $task->save();
         
-        return redirect('/');
+        return redirect('tasks');
     }
 
     /**
@@ -90,6 +98,8 @@ class TasksController extends Controller
         return view('tasks.edit',[
             'task'=>$task,
         ]);
+        
+        
     }
 
     /**
@@ -112,7 +122,7 @@ class TasksController extends Controller
         $task->status=$request->status;
         $task->save();
         
-        return redirect('/');
+        return redirect('tasks');
     }
 
     /**
@@ -127,6 +137,6 @@ class TasksController extends Controller
         $task=Task::findOrFail($id);
         $task->delete();
         
-        return redirect('/');
+        return redirect('tasks');
     }
 }

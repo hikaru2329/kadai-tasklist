@@ -19,6 +19,8 @@
                     <td>{{ $task->id }}</td>
                     <th>{{$task->status }}</th>
                     <td>{{ $task->content }}</td>
+                    <td>{!! link_to_route('tasks.show','詳細', ['task' => $task->id]) !!}</td>
+                    
                 </tr>
                 @endforeach
             </tbody>
@@ -27,14 +29,7 @@
 
     {!! link_to_route('tasks.create','新規タスクの登録',[],['class'=>'btn btn-primary']) !!}
     
-     @foreach ($tasks as $task)
-                <tr>
-                    {{-- メッセージ詳細ページへのリンク --}}
-                    <td>{!! link_to_route('tasks.show', $task->id, ['task' => $task->id]) !!}</td>
-            
-                    <td>{{ $task->content }}</td>
-                </tr>
-                @endforeach
+     
 
 
 @endsection
